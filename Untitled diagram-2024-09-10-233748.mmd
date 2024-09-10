@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant user as Usuário
+    participant browser as Navegador
+    participant server as Servidor
+
+    user->>browser: Acessa a aplicação de página única
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server-->>browser: Envia a aplicação SPA
+    deactivate server
+
+    browser->>browser: Renderiza a interface da aplicação
+    user->>browser: Navega entre as notas
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: Retorna a lista de notas
+    deactivate server
+
+    browser->>user: Exibe a lista de notas
